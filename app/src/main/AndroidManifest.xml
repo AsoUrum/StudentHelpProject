@@ -12,9 +12,17 @@
         <activity
             android:name=".TutorRegistration"
             android:exported="true" />
+
         <activity
             android:name=".StudentRegistration"
             android:exported="true" />
+        <activity
+            android:name=".tutorProfile"
+            android:exported="true" />
+        <activity
+            android:name=".tutorLogin"
+            android:exported="true" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -24,6 +32,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+            android:name=".StudentProfilePage"
+            android:exported="true" />
+        <activity
+            android:name=".StudentLoginPage"
+            android:exported="true" />
+
     </application>
 
 </manifest>
