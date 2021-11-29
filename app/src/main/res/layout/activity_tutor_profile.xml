@@ -23,7 +23,7 @@
         tools:layout_editor_absoluteY="115dp" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btnLogout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Logout"
@@ -31,7 +31,7 @@
         tools:layout_editor_absoluteY="86dp" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/btnDelete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Delete"
@@ -39,7 +39,7 @@
         tools:layout_editor_absoluteY="632dp" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/btnModify"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Modify"
@@ -69,4 +69,12 @@
         android:text="Appointment list"
         tools:layout_editor_absoluteX="176dp"
         tools:layout_editor_absoluteY="356dp" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="112dp"
+        android:layout_height="81dp"
+        app:srcCompat="@drawable/logo"
+        tools:layout_editor_absoluteX="64dp"
+        tools:layout_editor_absoluteY="5dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
