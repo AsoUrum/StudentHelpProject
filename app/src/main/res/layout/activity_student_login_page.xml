@@ -13,8 +13,8 @@
         app:srcCompat="@drawable/logo"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="50dp"/>
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="25dp"/>
 
     <TextView
         android:id="@+id/tvTitle"
@@ -31,7 +31,7 @@
         android:layout_height="wrap_content"
         android:text="Welcome, Enter your information to explore our services"
         android:textSize="25sp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="25dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvTitle"/>
@@ -43,8 +43,8 @@
         android:text="UserName : "
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvWelcome"
-        android:layout_marginTop="60dp"
-        android:layout_marginLeft="50dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="25dp"
         android:textSize="20dp"
         />
 
@@ -55,8 +55,8 @@
         android:text="Password : "
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvUserName"
-        android:layout_marginTop="40dp"
-        android:layout_marginLeft="50dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="25dp"
         android:textSize="20dp" />
 
     <EditText
@@ -80,13 +80,15 @@
         app:layout_constraintLeft_toRightOf="@id/tvPassword" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnStudentLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Login"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edPassword"
         android:layout_marginBottom="30dp"
-        android:textSize="40dp" />
+        android:textSize="25dp"
+        android:textAllCaps="false"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

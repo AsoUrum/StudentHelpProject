@@ -14,7 +14,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvStudentsProfileTitle"
-        android:layout_marginTop="100dp" />
+        android:layout_marginTop="50dp" />
 
     <Button
         android:id="@+id/btnGetHelp"
@@ -23,7 +23,7 @@
         android:text="Get Help"
         app:layout_constraintTop_toTopOf="@id/btnDelete"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginRight="30dp"
+        android:layout_marginRight="5dp"
         />
 
     <Button
@@ -53,8 +53,8 @@
         app:srcCompat="@drawable/logo"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="50dp"/>
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="25dp"/>
 
     <TextView
         android:id="@+id/tvTitle"
@@ -66,7 +66,7 @@
         app:layout_constraintLeft_toRightOf="@id/imageLogo" />
 
     <Button
-        android:id="@+id/btnLogout"
+        android:id="@+id/btnStudentLogout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="LogOut"
@@ -81,8 +81,8 @@
         android:text="Welcome "
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/imageLogo"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
         android:textSize="20dp" />
 
     <TextView
@@ -93,7 +93,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvWelcomeStudent"
-        android:layout_marginTop="50dp"/>
+        android:layout_marginTop="25dp"/>
 
     <TextView
         android:id="@+id/tvStudentsProfile"
