@@ -1,7 +1,9 @@
 package com.lasalle.exercie.studenthelpproject.model;
 
-public class User {
+import androidx.annotation.NonNull;
 
+public class User {
+    private static  int count = 100;
     private  int userId;
     private  String userName;
     private  String password;
@@ -10,8 +12,8 @@ public class User {
     public User() {
     }
 
-    public User(int userId, String userName, String password, String jobTitle) {
-        this.userId = userId;
+    public User( String userName, String password, String jobTitle) {
+        this.userId = ++count;
         this.userName = userName;
         this.password = password;
         this.jobTitle = jobTitle;
@@ -22,7 +24,7 @@ public class User {
     }
 
     public void setUserId(int userId) {
-        this.userId = userId;
+        this.userId = count++;
     }
 
     public String getUserName() {
@@ -49,6 +51,8 @@ public class User {
         this.jobTitle = jobTitle;
     }
 
+
+    @NonNull
     @Override
     public String toString() {
         return "User{" +

@@ -8,7 +8,7 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    Button btnLogin;
+    Button btnLogin,btnStudentSignUp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -17,8 +17,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void initialize() {
-        btnLogin =findViewById(R.id.btnLogin);
+        btnLogin = findViewById(R.id.btnLogin);
+        btnStudentSignUp = findViewById(R.id.btnStudentSignUp);
         btnLogin.setOnClickListener(this);
+        btnStudentSignUp.setOnClickListener(this);
     }
 
     @Override
@@ -30,11 +32,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btnLogin:
                 toStudentLoginPage();
                 break;
+            case R.id.btnStudentSignUp:
+                toStudentSignUp();
+
+                break;
+
     }
 }
+
+    private void toStudentSignUp() {
+        Intent i = new Intent(this ,StudentRegistration.class);
+        startActivity(i);
+        this.finish();
+    }
 
     private void toStudentLoginPage() {
         Intent i = new Intent(this ,StudentLoginPage.class);
         startActivity(i);
+        this.finish();
     }
-    }
+}

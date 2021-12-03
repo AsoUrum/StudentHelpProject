@@ -35,6 +35,7 @@ public class StudentProfilePage extends AppCompatActivity implements View.OnClic
 }
 
     private void toStudentLoginPage() {
+
         Intent i = new Intent(this ,StudentLoginPage.class);
         startActivity(i);
     }
