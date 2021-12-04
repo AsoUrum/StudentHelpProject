@@ -67,19 +67,14 @@ public class StudentLoginPage extends AppCompatActivity implements View.OnClickL
 }
 
     private void validate() {
-        String id = edUserName.getText().toString();
-        String pword = edPassword.getText().toString();
-        userChild = userDB.child(id);
+        String uname = edUserName.getText().toString();
+        userChild = userDB.child(uname);
         userChild.addValueEventListener(this);
 
     }
 
 
     private void toProfilePage(String title, String id) {
-//
-//         Intent i = new Intent(this ,StudentProfilePage.class);
-//         startActivity(i);
-//         this.finish();
 
         if(title.equals("student"))
         {
@@ -99,22 +94,17 @@ public class StudentLoginPage extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onDataChange(@NonNull DataSnapshot snapshot) {
-        String id = edUserName.getText().toString();
+        String uname = edUserName.getText().toString();
         String pw= edPassword.getText().toString();
 
         if(snapshot.exists()) {
 
-            String pword = snapshot.child("password").getValue().toString();
+            String pword = snapshot.child("Password").getValue().toString();
             String title = snapshot.child("Title").getValue().toString();
             String uid = snapshot.child("UserId").getValue().toString();
             if (pw.equals(pword) ) {
 
-
                 toProfilePage(title,uid);
-
-
-
-
             }
         }else{
             Toast.makeText(this,"The document with the id "  + " doesn't exist",Toast.LENGTH_LONG).show();

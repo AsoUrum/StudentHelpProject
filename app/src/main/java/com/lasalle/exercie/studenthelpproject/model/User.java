@@ -7,7 +7,7 @@ public class User {
     private  int userId;
     private  String userName;
     private  String password;
-    private  String jobTitle;
+    private  String title;
 
     public User() {
     }
@@ -16,7 +16,7 @@ public class User {
         this.userId = ++count;
         this.userName = userName;
         this.password = password;
-        this.jobTitle = jobTitle;
+        this.title = title;
     }
 
     public int getUserId() {
@@ -43,12 +43,12 @@ public class User {
         this.password = password;
     }
 
-    public String getJobTitle() {
-        return jobTitle;
+    public String getTitle() {
+        return title;
     }
 
-    public void setJobTitle(String jobTitle) {
-        this.jobTitle = jobTitle;
+    public void setJobTitle(String Title) {
+        this.title = Title;
     }
 
 
@@ -59,7 +59,7 @@ public class User {
                 "userId=" + userId +
                 ", userName='" + userName + '\'' +
                 ", password='" + password + '\'' +
-                ", jobTitle='" + jobTitle + '\'' +
+                ", title='" + title + '\'' +
                 '}';
     }
 }

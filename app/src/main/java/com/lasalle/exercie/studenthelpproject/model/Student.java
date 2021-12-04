@@ -5,7 +5,6 @@ import java.util.Date;
 public class Student {
 
     private  int studentId;
-    private  int userId;
     private  String firstName;
     private  String lastName;
     private  String email;
@@ -15,9 +14,8 @@ public class Student {
     public Student() {
     }
 
-    public Student(int studentId, int userId, String firstName, String lastName, String email, String gender, Date dateOfBirth) {
+    public Student(int studentId, String firstName, String lastName, String email, String gender, Date dateOfBirth) {
         this.studentId = studentId;
-        this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -32,14 +30,6 @@ public class Student {
 
     public void setStudentId(int studentId) {
         this.studentId = studentId;
-    }
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
     }
 
     public String getFirstName() {
@@ -84,14 +74,13 @@ public class Student {
 
     @Override
     public String toString() {
-        return "Student{" +
-                "studentId=" + studentId +
-                ", userId=" + userId +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                ", gender='" + gender + '\'' +
-                ", dateOfBirth=" + dateOfBirth +
-                '}';
+        return
+                "StudentId = " + studentId + "\n" +
+                "FirstName = " + firstName + "\n" +
+                "LastName = " + lastName + "\n" +
+                "Email = " + email + "\n" +
+                "Gender = " + gender + "\n" +
+                "DateOfBirth = " + dateOfBirth ;
+
     }
 }
