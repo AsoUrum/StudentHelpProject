@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void toStudentLoginPage() {
-        Intent i = new Intent(this ,StudentLoginPage.class);
+        Intent i = new Intent(this, StudentLoginPage.class);
         startActivity(i);
         this.finish();
     }
