@@ -7,20 +7,20 @@ public class TutorialAssignment {
 
     private  int studentId;
     private  int tutorId;
-    private Date tutorialDate;
+    private String tutorialDate;
     private String tutorialDescription;
+    private String tid;
 
     public TutorialAssignment() {
     }
 
-    public TutorialAssignment( int studentId, int tutorId, Date tutorialDate, String tutorialDescription) {
-
+    public TutorialAssignment(int studentId, int tutorId, String tutorialDate, String tutorialDescription, String tid) {
         this.studentId = studentId;
         this.tutorId = tutorId;
         this.tutorialDate = tutorialDate;
         this.tutorialDescription = tutorialDescription;
+        this.tid = tid;
     }
-
 
     public int getStudentId() {
         return studentId;
@@ -38,11 +38,11 @@ public class TutorialAssignment {
         this.tutorId = tutorId;
     }
 
-    public Date getTutorialDate() {
+    public String getTutorialDate() {
         return tutorialDate;
     }
 
-    public void setTutorialDate(Date tutorialDate) {
+    public void setTutorialDate(String tutorialDate) {
         this.tutorialDate = tutorialDate;
     }
 
@@ -54,12 +54,19 @@ public class TutorialAssignment {
         this.tutorialDescription = tutorialDescription;
     }
 
+    public String getTid() {
+        return tid;
+    }
+
+    public void setTid(String tid) {
+        this.tid = tid;
+    }
 
     @Override
     public String toString() {
         return
 
-                "Sudent Id = " + studentId + "\n " +
+                "Student Id = " + studentId + "\n " +
                 "Tutor Id = " + tutorId + "\n " +
                 "Tutorial Date = " + tutorialDate + "\n " +
                 "Tutorial Description = " + tutorialDescription ;

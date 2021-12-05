@@ -9,12 +9,12 @@ public class Student {
     private  String lastName;
     private  String email;
     private  String gender;
-    private  Date dateOfBirth;
+    private  String dateOfBirth;
 
     public Student() {
     }
 
-    public Student(int studentId, String firstName, String lastName, String email, String gender, Date dateOfBirth) {
+    public Student(int studentId, String firstName, String lastName, String email, String gender, String dateOfBirth) {
         this.studentId = studentId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -64,11 +64,11 @@ public class Student {
         this.gender = gender;
     }
 
-    public Date getDateOfBirth() {
+    public String getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
+    public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 

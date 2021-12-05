@@ -10,9 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.StudentHelpProject">
         <activity
+            android:name=".TutorStudentAssignment"
+            android:exported="false" />
+        <activity
             android:name=".TutorRegistration"
             android:exported="true" />
-
         <activity
             android:name=".StudentRegistration"
             android:exported="true" />
@@ -22,7 +24,6 @@
         <activity
             android:name=".tutorLogin"
             android:exported="true" />
-
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -38,7 +39,6 @@
         <activity
             android:name=".StudentLoginPage"
             android:exported="true" />
-
     </application>
 
 </manifest>

@@ -6,26 +6,24 @@ public class Tutor {
 
 
     private  int tutorId;
-    private  int userId;
     private  String firstName;
     private  String lastName;
     private  String email;
     private  String gender;
-    private Date dateOfBirth;
-    private String skillId;
+    private String dateOfBirth;
+
 
     public Tutor() {
     }
 
-    public Tutor(int tutorId, int userId, String firstName, String lastName, String email, String gender, Date dateOfBirth, String skillId) {
+    public Tutor(int tutorId, String firstName, String lastName, String email, String gender, String dateOfBirth) {
         this.tutorId = tutorId;
-        this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.gender = gender;
         this.dateOfBirth = dateOfBirth;
-        this.skillId = skillId;
+
     }
 
     public int getTutorId() {
@@ -34,14 +32,6 @@ public class Tutor {
 
     public void setTutorId(int tutorId) {
         this.tutorId = tutorId;
-    }
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
     }
 
     public String getFirstName() {
@@ -76,33 +66,25 @@ public class Tutor {
         this.gender = gender;
     }
 
-    public Date getDateOfBirth() {
+    public String getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
+    public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public String getSkillId() {
-        return skillId;
-    }
 
-    public void setSkillId(String skillId) {
-        this.skillId = skillId;
-    }
 
     @Override
     public String toString() {
-        return "Tutor{" +
-                "tutorId=" + tutorId +
-                ", userId=" + userId +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                ", gender='" + gender + '\'' +
-                ", dateOfBirth=" + dateOfBirth +
-                ", skillId='" + skillId + '\'' +
-                '}';
+        return
+                "TutorId = " + tutorId + "\n" +
+                "FirstName = " + firstName + " " + lastName + "\n" +
+                "Email = " + email + "\n" +
+                "Gender " + gender + "\n" +
+                "DateOfBirth = " + dateOfBirth ;
+
+
     }
 }

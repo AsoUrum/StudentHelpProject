@@ -27,7 +27,7 @@ import java.util.ArrayList;
 
 public class StudentProfilePage extends AppCompatActivity implements View.OnClickListener, ValueEventListener, ChildEventListener {
 
-    Button btnStudentLogout;
+    Button btnStudentLogout, btnGetHelp;
     TextView tvStudentName,tvStudentProfile;
     DatabaseReference studentDB,studentChild;
     Student astudent;
@@ -50,9 +50,11 @@ public class StudentProfilePage extends AppCompatActivity implements View.OnClic
 
     private void initialize() {
         btnStudentLogout = findViewById(R.id.btnStudentLogout);
+        btnGetHelp = findViewById(R.id.btnGetHelp);
         tvStudentName = findViewById(R.id.tvStudentName);
         tvStudentProfile = findViewById(R.id.tvStudentsProfile);
         btnStudentLogout.setOnClickListener(this);
+        btnGetHelp.setOnClickListener(this);
 
         Intent i = getIntent();
         studentId = i.getStringExtra("studentid");
@@ -64,6 +66,7 @@ public class StudentProfilePage extends AppCompatActivity implements View.OnClic
 
         TADatabase = FirebaseDatabase.getInstance().getReference("TutorialAssignment");
         getAppointment();
+
         LvAppointment = findViewById(R.id.lvAppointment);
         ListAppointment= new ArrayList<>();
         lvAdapter = new ArrayAdapter<TutorialAssignment>(this, android.R.layout.simple_list_item_1, ListAppointment);
@@ -93,13 +96,24 @@ public class StudentProfilePage extends AppCompatActivity implements View.OnClic
             case R.id.btnStudentLogout:
                 toStudentLoginPage();
                 break;
+            case R.id.btnGetHelp:
+                toGetHelp();
     }
 }
 
+    private void toGetHelp() {
+
+        Intent i = new Intent(this ,TutorStudentAssignment.class);
+        i.putExtra("studentid", studentId);
+        startActivity(i);
+        this.finish();
+    }
+
     private void toStudentLoginPage() {
 
-        Intent i = new Intent(this ,StudentLoginPage.class);
+        Intent i = new Intent(this ,MainActivity.class);
         startActivity(i);
+        this.finish();
     }
 
     @Override
@@ -110,7 +124,7 @@ public class StudentProfilePage extends AppCompatActivity implements View.OnClic
             astudent.setFirstName(snapshot.child("FirstName").getValue().toString());
             astudent.setLastName(snapshot.child("LastName").getValue().toString());
             astudent.setGender(snapshot.child("Gender").getValue().toString());
-            astudent.setDateOfBirth(Date.valueOf(snapshot.child("DateOfBirth").getValue().toString()));
+            astudent.setDateOfBirth(snapshot.child("DateOfBirth").getValue().toString());
             astudent.setEmail(snapshot.child("Email").getValue().toString());
 
            String name = astudent.getFirstName() + " " + astudent.getLastName();
@@ -118,15 +132,14 @@ public class StudentProfilePage extends AppCompatActivity implements View.OnClic
             tvStudentName.setText(name);
             tvStudentProfile.setText(astudent.toString());
 
-
-
         }else{
             Toast.makeText(this,"The document with the id "  + " doesn't exist",Toast.LENGTH_LONG).show();
 
         }
 
-
     }
+
+    ////// appoitnments
 
     @Override
     public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
@@ -136,7 +149,8 @@ public class StudentProfilePage extends AppCompatActivity implements View.OnClic
             String TutorId = snapshot.child("TutorId").getValue().toString();
             String TutorialDate = snapshot.child("TutorialDate").getValue().toString();
             String TutorialDescription = snapshot.child("TutorialDescription").getValue().toString();
-            TutorialAssignment tutorialAssignment = new TutorialAssignment(Integer.valueOf(StudentId),Integer.valueOf(TutorId),Date.valueOf( TutorialDate),TutorialDescription);
+            String tid = snapshot.child("TId").getValue().toString();
+            TutorialAssignment tutorialAssignment = new TutorialAssignment(Integer.valueOf(StudentId),Integer.valueOf(TutorId), TutorialDate,TutorialDescription,tid);
             ListAppointment.add(tutorialAssignment);
             lvAdapter.notifyDataSetChanged();
         }
