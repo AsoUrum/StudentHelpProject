@@ -4,30 +4,21 @@ import java.util.Date;
 
 public class TutorialAssignment {
 
-    private int tutorialId;
     private  int studentId;
     private  int tutorId;
-    private Date tutorialDate;
+    private String tutorialDate;
     private String tutorialDescription;
 
     public TutorialAssignment() {
     }
 
-    public TutorialAssignment(int tutorialId, int studentId, int tutorId, Date tutorialDate, String tutorialDescription) {
-        this.tutorialId = tutorialId;
+    public TutorialAssignment(int studentId, int tutorId, String tutorialDate, String tutorialDescription) {
         this.studentId = studentId;
         this.tutorId = tutorId;
         this.tutorialDate = tutorialDate;
         this.tutorialDescription = tutorialDescription;
     }
 
-    public int getTutorialId() {
-        return tutorialId;
-    }
-
-    public void setTutorialId(int tutorialId) {
-        this.tutorialId = tutorialId;
-    }
 
     public int getStudentId() {
         return studentId;
@@ -45,11 +36,11 @@ public class TutorialAssignment {
         this.tutorId = tutorId;
     }
 
-    public Date getTutorialDate() {
+    public String getTutorialDate() {
         return tutorialDate;
     }
 
-    public void setTutorialDate(Date tutorialDate) {
+    public void setTutorialDate(String tutorialDate) {
         this.tutorialDate = tutorialDate;
     }
 
@@ -64,12 +55,9 @@ public class TutorialAssignment {
 
     @Override
     public String toString() {
-        return "TutorialAssignment{" +
-                "tutorialId=" + tutorialId +
-                ", studentId=" + studentId +
-                ", tutorId=" + tutorId +
+        return " tutorId=" + tutorId +
                 ", tutorialDate=" + tutorialDate +
-                ", tutorialDescription='" + tutorialDescription + '\'' +
-                '}';
+                ", tutorialDescription='" + tutorialDescription + '\'' 
+                ;
     }
 }
