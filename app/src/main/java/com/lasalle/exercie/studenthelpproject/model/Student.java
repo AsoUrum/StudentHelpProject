@@ -4,15 +4,18 @@ import java.util.Date;
 
 public class Student {
 
-    private  int studentId;
+
+    private  int  studentId;
     private  String firstName;
     private  String lastName;
     private  String email;
     private  String gender;
     private  String dateOfBirth;
-
     public Student() {
     }
+
+
+
 
     public Student(int studentId, String firstName, String lastName, String email, String gender, String dateOfBirth) {
         this.studentId = studentId;
@@ -76,11 +79,11 @@ public class Student {
     public String toString() {
         return
                 "StudentId = " + studentId + "\n" +
-                "FirstName = " + firstName + "\n" +
-                "LastName = " + lastName + "\n" +
-                "Email = " + email + "\n" +
-                "Gender = " + gender + "\n" +
-                "DateOfBirth = " + dateOfBirth ;
+                        "FirstName = " + firstName + "\n" +
+                        "LastName = " + lastName + "\n" +
+                        "Email = " + email + "\n" +
+                        "Gender = " + gender + "\n" +
+                        "DateOfBirth = " + dateOfBirth ;
 
     }
 }

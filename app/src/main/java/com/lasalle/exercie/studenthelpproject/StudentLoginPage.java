@@ -99,9 +99,9 @@ public class StudentLoginPage extends AppCompatActivity implements View.OnClickL
 
         if(snapshot.exists()) {
 
-            String pword = snapshot.child("Password").getValue().toString();
-            String title = snapshot.child("Title").getValue().toString();
-            String uid = snapshot.child("UserId").getValue().toString();
+            String pword = snapshot.child("password").getValue().toString();
+            String title = snapshot.child("title").getValue().toString();
+            String uid = snapshot.child("userId").getValue().toString();
             if (pw.equals(pword) ) {
 
                 toProfilePage(title,uid);

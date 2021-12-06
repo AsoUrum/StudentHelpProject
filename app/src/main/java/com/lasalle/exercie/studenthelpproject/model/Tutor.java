@@ -11,18 +11,20 @@ public class Tutor {
     private  String email;
     private  String gender;
     private String dateOfBirth;
+    private  String skill;
 
 
     public Tutor() {
     }
 
-    public Tutor(int tutorId, String firstName, String lastName, String email, String gender, String dateOfBirth) {
+    public Tutor(int tutorId, String firstName, String lastName, String email, String gender, String dateOfBirth, String skill) {
         this.tutorId = tutorId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.gender = gender;
         this.dateOfBirth = dateOfBirth;
+        this.skill = skill;
 
     }
 
@@ -74,7 +76,13 @@ public class Tutor {
         this.dateOfBirth = dateOfBirth;
     }
 
+    public String getSkill() {
+        return skill;
+    }
 
+    public void setSkill(String skill) {
+        this.skill = skill;
+    }
 
     @Override
     public String toString() {

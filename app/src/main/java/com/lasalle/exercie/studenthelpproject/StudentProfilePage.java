@@ -120,12 +120,12 @@ public class StudentProfilePage extends AppCompatActivity implements View.OnClic
     public void onDataChange(@NonNull DataSnapshot snapshot) {
 
         if(snapshot.exists()) {
-            astudent.setStudentId(Integer.valueOf( snapshot.child("StudentId").getValue().toString()));
-            astudent.setFirstName(snapshot.child("FirstName").getValue().toString());
-            astudent.setLastName(snapshot.child("LastName").getValue().toString());
-            astudent.setGender(snapshot.child("Gender").getValue().toString());
-            astudent.setDateOfBirth(snapshot.child("DateOfBirth").getValue().toString());
-            astudent.setEmail(snapshot.child("Email").getValue().toString());
+            astudent.setStudentId(Integer.valueOf( snapshot.child("studentId").getValue().toString()));
+            astudent.setFirstName(snapshot.child("firstName").getValue().toString());
+            astudent.setLastName(snapshot.child("lastName").getValue().toString());
+            astudent.setGender(snapshot.child("gender").getValue().toString());
+            astudent.setDateOfBirth(snapshot.child("dateOfBirth").getValue().toString());
+            astudent.setEmail(snapshot.child("email").getValue().toString());
 
            String name = astudent.getFirstName() + " " + astudent.getLastName();
 
@@ -145,12 +145,12 @@ public class StudentProfilePage extends AppCompatActivity implements View.OnClic
     public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
 
         if (snapshot.exists()){
-            String StudentId = snapshot.child("StudentId").getValue().toString();
-            String TutorId = snapshot.child("TutorId").getValue().toString();
-            String TutorialDate = snapshot.child("TutorialDate").getValue().toString();
-            String TutorialDescription = snapshot.child("TutorialDescription").getValue().toString();
-            String tid = snapshot.child("TId").getValue().toString();
-            TutorialAssignment tutorialAssignment = new TutorialAssignment(Integer.valueOf(StudentId),Integer.valueOf(TutorId), TutorialDate,TutorialDescription,tid);
+            String StudentId = snapshot.child("studentId").getValue().toString();
+            String TutorId = snapshot.child("tutorId").getValue().toString();
+            String TutorialDate = snapshot.child("tutorialDate").getValue().toString();
+            String TutorialDescription = snapshot.child("tutorialDescription").getValue().toString();
+           // String tid = snapshot.child("tId").getValue().toString();
+            TutorialAssignment tutorialAssignment = new TutorialAssignment(Integer.valueOf(StudentId),Integer.valueOf(TutorId), TutorialDate,TutorialDescription);
             ListAppointment.add(tutorialAssignment);
             lvAdapter.notifyDataSetChanged();
         }

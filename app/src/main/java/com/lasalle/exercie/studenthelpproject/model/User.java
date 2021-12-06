@@ -3,7 +3,7 @@ package com.lasalle.exercie.studenthelpproject.model;
 import androidx.annotation.NonNull;
 
 public class User {
-    private static  int count = 100;
+
     private  int userId;
     private  String userName;
     private  String password;
@@ -12,8 +12,8 @@ public class User {
     public User() {
     }
 
-    public User( String userName, String password, String jobTitle) {
-        this.userId = ++count;
+    public User(int userid, String userName, String password, String title) {
+        this.userId = userid ;
         this.userName = userName;
         this.password = password;
         this.title = title;
@@ -24,7 +24,7 @@ public class User {
     }
 
     public void setUserId(int userId) {
-        this.userId = count++;
+        this.userId = userId;
     }
 
     public String getUserName() {
@@ -47,7 +47,7 @@ public class User {
         return title;
     }
 
-    public void setJobTitle(String Title) {
+    public void setTitle(String Title) {
         this.title = Title;
     }
 

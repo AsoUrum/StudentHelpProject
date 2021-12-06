@@ -40,7 +40,7 @@ public class TutorStudentAssignment extends AppCompatActivity implements ChildEv
 
     DatabaseReference tutorialAssignmentDB,tutorialAssignmentChild;
 
-
+    int count = 0;
 
 
     @Override
@@ -69,56 +69,54 @@ public class TutorStudentAssignment extends AppCompatActivity implements ChildEv
         listTutor = new  ArrayList<Tutor>();
         lvAdapter = new ArrayAdapter<Tutor>(this, android.R.layout.simple_list_item_1,listTutor);
         tutorDB = FirebaseDatabase.getInstance().getReference("Tutor");
-        toGetHelp();
+        tutorDB.addChildEventListener(this);
         lvTutorId.setAdapter(lvAdapter);
 
-
-        //lvTutorId.setOnItemClickListener(this);
-
-
-//        tutorDB = FirebaseDatabase.getInstance().getReference("Tutor");
-//        toGetHelp();
-
-
-        //tutorialAssignmentDB = FirebaseDatabase.getInstance().getReference("TutorialAssignment");
-        //tutorialAssignmentDB.addChildEventListener(this);
+        lvTutorId.setOnItemClickListener(this);
 
 
 
 
+        tutorialAssignmentDB = FirebaseDatabase.getInstance().getReference("TutorialAssignment");
+        tutorialAssignmentDB.addChildEventListener(this);
 
 
 
-    }
-
-    private void toGetHelp() {
-        tutorDB.addChildEventListener(this);
     }
 
 
     @Override
     public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
 
-        if(snapshot.exists())
-        {
-            int id =Integer.parseInt(snapshot.child("TutorId").getValue().toString());
-            String fname = snapshot.child("FirstName").getValue().toString();
-            String lname =  snapshot.child("LastName").getValue().toString();
-            String gender =  snapshot.child("Gender").getValue().toString();
-            String bday =   snapshot.child("DateOfBirth").getValue().toString();
-            String email =   snapshot.child("Email").getValue().toString();
-            Tutor tutor = new Tutor(id,fname,lname,email,gender, bday);
-            listTutor.add(tutor);
-            lvAdapter.notifyDataSetChanged();
+        try {
+
+
+            if (snapshot.exists()) {
+                int id = Integer.parseInt(snapshot.child("TutorId").getValue().toString());
+                String fname = snapshot.child("FirstName").getValue().toString();
+                String lname = snapshot.child("LastName").getValue().toString();
+                String gender = snapshot.child("Gender").getValue().toString();
+                String bday = snapshot.child("DateOfBirth").getValue().toString();
+                String email = snapshot.child("Email").getValue().toString();
+                String skill = snapshot.child("skill").getValue().toString();
+                Tutor tutor = new Tutor(id, fname, lname, email, gender, bday,skill);
+                listTutor.add(tutor);
+                lvAdapter.notifyDataSetChanged();
+
+
+            } else {
+
+
+                Toast.makeText(this, "there is a problem", Toast.LENGTH_LONG).show();
+            }
+
+        }catch (Exception e){
+
+            Toast.makeText(this, e.getMessage().toString(), Toast.LENGTH_LONG).show();
 
 
 
-        }else{
-
-
-            Toast.makeText(this,"there is a problem",Toast.LENGTH_LONG).show();
         }
-
 
 
 
@@ -145,26 +143,37 @@ public class TutorStudentAssignment extends AppCompatActivity implements ChildEv
 
     }
 
-    @Override
-    public void onClick(View view) {
 
-//        TutorialAssignment tutoAssign = new TutorialAssignment();
-//
-//        tutoAssign.setStudentId(Integer.valueOf(tvStudentId.getText().toString()));
-//        tutoAssign.setTutorId(Integer.valueOf(tvTutorId.getText().toString()));
-//        tutoAssign.setTutorialDate(edTutorialdate.getText().toString());
-//        tutoAssign.setTutorialDescription(edTutorialDescription.getText().toString());
-//        tutorialAssignmentChild = tutorialAssignmentDB.child(tvStudentId.getText().toString());
-//        tutorialAssignmentChild.setValue(tutoAssign);
-    }
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-//        Tutor tutor = listTutor.get(i);
-//
-//        tvTutorId.setText(String.valueOf(tutor.getTutorId()));
+        Tutor tutor = listTutor.get(i);
 
+        tvTutorId.setText(String.valueOf(tutor.getTutorId()));
+
+
+    }
+
+    @Override
+    public void onClick(View view) {
+        try {
+//
+            TutorialAssignment tutoAssign = new TutorialAssignment();
+
+            tutoAssign.setStudentId(Integer.valueOf(tvStudentId.getText().toString()));
+            tutoAssign.setTutorId(Integer.valueOf(tvTutorId.getText().toString()));
+            tutoAssign.setTutorialDate(edTutorialdate.getText().toString());
+            tutoAssign.setTutorialDescription(edTutorialDescription.getText().toString());
+
+            tutorialAssignmentChild = tutorialAssignmentDB.child(tvStudentId.getText().toString()).child(String.valueOf(count));
+            tutorialAssignmentChild.setValue(tutoAssign);
+            count++;
+        }catch (Exception e){
+
+            Toast.makeText(this, e.getMessage().toString(), Toast.LENGTH_LONG).show();
+
+        }
 
     }
 }

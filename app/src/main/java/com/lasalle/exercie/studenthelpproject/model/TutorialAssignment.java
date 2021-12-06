@@ -1,5 +1,7 @@
 package com.lasalle.exercie.studenthelpproject.model;
 
+import androidx.annotation.NonNull;
+
 import java.util.Date;
 
 public class TutorialAssignment {
@@ -9,17 +11,17 @@ public class TutorialAssignment {
     private  int tutorId;
     private String tutorialDate;
     private String tutorialDescription;
-    private String tid;
+    //private String tid;
 
     public TutorialAssignment() {
     }
 
-    public TutorialAssignment(int studentId, int tutorId, String tutorialDate, String tutorialDescription, String tid) {
+    public TutorialAssignment(int studentId, int tutorId, String tutorialDate, String tutorialDescription) {
         this.studentId = studentId;
         this.tutorId = tutorId;
         this.tutorialDate = tutorialDate;
         this.tutorialDescription = tutorialDescription;
-        this.tid = tid;
+        //this.tid = tid;
     }
 
     public int getStudentId() {
@@ -54,14 +56,15 @@ public class TutorialAssignment {
         this.tutorialDescription = tutorialDescription;
     }
 
-    public String getTid() {
-        return tid;
-    }
+//    public String getTid() {
+//        return tid;
+//    }
+//
+//    public void setTid(String tid) {
+//        this.tid = tid;
+//    }
 
-    public void setTid(String tid) {
-        this.tid = tid;
-    }
-
+    @NonNull
     @Override
     public String toString() {
         return
