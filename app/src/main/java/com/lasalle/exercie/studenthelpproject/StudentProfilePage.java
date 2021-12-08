@@ -21,8 +21,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.lasalle.exercie.studenthelpproject.model.Student;
 import com.lasalle.exercie.studenthelpproject.model.TutorialAssignment;
+import com.lasalle.exercie.studenthelpproject.model.One_item_student_adpter;
 
-import java.sql.Date;
 import java.util.ArrayList;
 
 public class StudentProfilePage extends AppCompatActivity implements View.OnClickListener, ValueEventListener, ChildEventListener {
@@ -37,6 +37,9 @@ public class StudentProfilePage extends AppCompatActivity implements View.OnClic
     ArrayList<TutorialAssignment> ListAppointment;
     ArrayAdapter<TutorialAssignment> lvAdapter;
     DatabaseReference TADatabase,ChildDatabase;
+
+
+    One_item_student_adpter newAdpter;
 
 
 
@@ -55,7 +58,6 @@ public class StudentProfilePage extends AppCompatActivity implements View.OnClic
         tvStudentProfile = findViewById(R.id.tvStudentsProfile);
         btnStudentLogout.setOnClickListener(this);
         btnGetHelp.setOnClickListener(this);
-
         Intent i = getIntent();
         studentId = i.getStringExtra("studentid");
 
@@ -67,12 +69,18 @@ public class StudentProfilePage extends AppCompatActivity implements View.OnClic
         TADatabase = FirebaseDatabase.getInstance().getReference("TutorialAssignment");
         getAppointment();
 
+
+
+
         LvAppointment = findViewById(R.id.lvAppointment);
         ListAppointment= new ArrayList<>();
         lvAdapter = new ArrayAdapter<TutorialAssignment>(this, android.R.layout.simple_list_item_1, ListAppointment);
-        LvAppointment.setAdapter(lvAdapter);
+        //LvAppointment.setAdapter(lvAdapter);
 
 
+
+        newAdpter = new One_item_student_adpter(getBaseContext(),ListAppointment);
+        LvAppointment.setAdapter(newAdpter);
 
     }
 
@@ -105,6 +113,7 @@ public class StudentProfilePage extends AppCompatActivity implements View.OnClic
 
         Intent i = new Intent(this ,TutorStudentAssignment.class);
         i.putExtra("studentid", studentId);
+        i.putExtra("count", String.valueOf(ListAppointment.size()) );
         startActivity(i);
         this.finish();
     }
@@ -153,6 +162,7 @@ public class StudentProfilePage extends AppCompatActivity implements View.OnClic
             TutorialAssignment tutorialAssignment = new TutorialAssignment(Integer.valueOf(StudentId),Integer.valueOf(TutorId), TutorialDate,TutorialDescription);
             ListAppointment.add(tutorialAssignment);
             lvAdapter.notifyDataSetChanged();
+            newAdpter.notifyDataSetChanged();
         }
         else {
             Toast.makeText(this,"Nothing",Toast.LENGTH_LONG).show();

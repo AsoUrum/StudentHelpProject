@@ -87,11 +87,11 @@ public class Tutor {
     @Override
     public String toString() {
         return
-                "TutorId = " + tutorId + "\n" +
-                "FirstName = " + firstName + " " + lastName + "\n" +
-                "Email = " + email + "\n" +
-                "Gender " + gender + "\n" +
-                "DateOfBirth = " + dateOfBirth ;
+                "TutorId : " + tutorId + "\n" +
+                "FirstName : " + firstName + " " + lastName + "\n" +
+                "Email : " + email + "\n" +
+                "Gender : " + gender + "\n" +
+                "DateOfBirth : " + dateOfBirth ;
 
 
     }

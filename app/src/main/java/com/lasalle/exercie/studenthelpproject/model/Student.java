@@ -78,12 +78,11 @@ public class Student {
     @Override
     public String toString() {
         return
-                "StudentId = " + studentId + "\n" +
-                        "FirstName = " + firstName + "\n" +
-                        "LastName = " + lastName + "\n" +
-                        "Email = " + email + "\n" +
-                        "Gender = " + gender + "\n" +
-                        "DateOfBirth = " + dateOfBirth ;
+                "StudentId : " + studentId + "\n" +
+                        "StudentName : " + firstName + " " + lastName + "\n" +
+                        "Email : " + email + "\n" +
+                        "Gender : " + gender + "\n" +
+                        "DateOfBirth : " + dateOfBirth ;
 
     }
 }

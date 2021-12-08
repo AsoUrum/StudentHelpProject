@@ -17,7 +17,7 @@ import com.lasalle.exercie.studenthelpproject.model.User;
 public class TutorRegistration extends AppCompatActivity implements View.OnClickListener {
 
     EditText edFirstName, edLastName, edGender, edEmail, edDOB, edSkill, edUsername, edPassword, edTutorId;
-    Button btnRegister;
+    Button btnRegister,btnBackFromRegisterTutor;
 
     DatabaseReference tutorHelpDatabase, tutorHelpDatabaseUser;
 
@@ -37,10 +37,12 @@ public class TutorRegistration extends AppCompatActivity implements View.OnClick
         edDOB = findViewById(R.id.edDOB);
         edSkill = findViewById(R.id.edSkill);
         btnRegister = findViewById(R.id.btnRegister);
+        btnBackFromRegisterTutor = findViewById(R.id.btnBackFromRegisterTutor);
         edUsername = findViewById(R.id.edUserName);
         edPassword = findViewById(R.id.edPassword);
         edTutorId = findViewById(R.id.edTutorId);
         btnRegister.setOnClickListener(this);
+        btnBackFromRegisterTutor.setOnClickListener(this);
 
         tutorHelpDatabase = FirebaseDatabase.getInstance().getReference("Tutor");
         tutorHelpDatabaseUser = FirebaseDatabase.getInstance().getReference("Users");
@@ -53,8 +55,17 @@ public class TutorRegistration extends AppCompatActivity implements View.OnClick
             case R.id.btnRegister:
                 register();
                 break;
+            case R.id.btnBackFromRegisterTutor:
+                backtomain();
+                break;
         }
 
+    }
+
+    private void backtomain() {
+        Intent i = new Intent(this ,MainActivity.class);
+        startActivity(i);
+        this.finish();
     }
 
     private void register() {
@@ -71,19 +82,55 @@ public class TutorRegistration extends AppCompatActivity implements View.OnClick
             int tutorid = Integer.valueOf(edTutorId.getText().toString());
             int userid = tutorid;
             String title = "tutor";
-            Tutor oneTutor = new Tutor(tutorid, firstName, lastName, email, gender, dateOfBirth, skill);
-            User oneUser = new User(userid, username, password, title);
-            tutorHelpDatabase.child(String.valueOf(oneTutor.getTutorId())).setValue(oneTutor);
-            tutorHelpDatabaseUser.child(username).setValue(oneUser);
-            Toast.makeText(this, "Registered successfully!", Toast.LENGTH_LONG).show();
-            clearWidgets();
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-            this.finish();
+
+            boolean validity = false;
+
+            if(dateOfBirth.length() <=0){
+                validity = true;
+                Toast.makeText(getApplicationContext(), "Please enter Date of Birth", Toast.LENGTH_SHORT).show();
+            }else if(email.length() <=0){
+                validity = true;
+                Toast.makeText(getApplicationContext(), "Please enter Email", Toast.LENGTH_SHORT).show();
+            }else if(firstName.length() <=0){
+                validity = true;
+                Toast.makeText(getApplicationContext(), "Please enter firstName", Toast.LENGTH_SHORT).show();
+            }
+            else if(lastName.length() <=0){
+                validity = true;
+                Toast.makeText(getApplicationContext(), "Please enter last name", Toast.LENGTH_SHORT).show();
+            }
+            else if(gender.length() <=0){
+                validity = true;
+                Toast.makeText(getApplicationContext(), "Please enter gender", Toast.LENGTH_SHORT).show();
+            }
+            else if(username.length() <=0){
+                validity = true;
+                Toast.makeText(getApplicationContext(), "Please enter username", Toast.LENGTH_SHORT).show();
+            }
+            else if(password.length() <=0){
+                validity = true;
+                Toast.makeText(getApplicationContext(), "Please enter password", Toast.LENGTH_SHORT).show();
+            }
+            else if(tutorid==0 || tutorid<0){
+                validity = true;
+                Toast.makeText(getApplicationContext(), "Please enter tutor Id", Toast.LENGTH_SHORT).show();
+            }
+            if(validity == false) {
+                Tutor oneTutor = new Tutor(tutorid, firstName, lastName, email, gender, dateOfBirth, skill);
+                User oneUser = new User(userid, username, password, title);
+                tutorHelpDatabase.child(String.valueOf(oneTutor.getTutorId())).setValue(oneTutor);
+                tutorHelpDatabaseUser.child(username).setValue(oneUser);
+                Toast.makeText(this, "Registered successfully!", Toast.LENGTH_LONG).show();
+                clearWidgets();
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+                this.finish();
+            }
         } catch (Exception e) {
-            Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "You need to fill all the tables", Toast.LENGTH_LONG).show();
         }
-    }
+}
+
 
     private void clearWidgets() {
         edFirstName.setText(null);

@@ -19,7 +19,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.lasalle.exercie.studenthelpproject.model.One_item_student_adpter;
+import com.lasalle.exercie.studenthelpproject.model.One_item_tutor_adpater;
 import com.lasalle.exercie.studenthelpproject.model.Tutor;
+import com.lasalle.exercie.studenthelpproject.model.TutorAppointment;
 import com.lasalle.exercie.studenthelpproject.model.TutorialAssignment;
 
 import java.util.ArrayList;
@@ -33,10 +36,11 @@ public class tutorProfile extends AppCompatActivity implements View.OnClickListe
     String tutorId;
 
     ListView LvAppointment;
-    ArrayList<TutorialAssignment> ListAppointment;
-    ArrayAdapter<TutorialAssignment> lvAdapter;
+    ArrayList<TutorAppointment> ListAppointment;
+    ArrayAdapter<TutorAppointment> lvAdapter;
     DatabaseReference TADatabase,ChildDatabase;
-
+    DatabaseReference tutorAppointmentDB,tutorAppointChild;
+    One_item_tutor_adpater newAdpterTutor;
 
 
 
@@ -63,21 +67,27 @@ public class tutorProfile extends AppCompatActivity implements View.OnClickListe
 
         getTutor();
 
-        TADatabase = FirebaseDatabase.getInstance().getReference("TutorialAssignment");
+        //TADatabase = FirebaseDatabase.getInstance().getReference("TutorialAssignment");
+        tutorAppointmentDB = FirebaseDatabase.getInstance().getReference("TutorAppointment");
         getAppointment();
+
 
         LvAppointment = findViewById(R.id.lvAppointments);
         ListAppointment= new ArrayList<>();
-        lvAdapter = new ArrayAdapter<TutorialAssignment>(this, android.R.layout.simple_list_item_1, ListAppointment);
-        LvAppointment.setAdapter(lvAdapter);
+        //lvAdapter = new ArrayAdapter<TutorialAssignment>(this, android.R.layout.simple_list_item_1, ListAppointment);
+        newAdpterTutor = new One_item_tutor_adpater(getBaseContext(),ListAppointment);
+        //LvAppointment.setAdapter(lvAdapter);
+        LvAppointment.setAdapter(newAdpterTutor);
 
 
 
     }
 
     private void getAppointment() {
-        ChildDatabase = TADatabase.child(tutorId);
-        ChildDatabase.addChildEventListener(this);
+        //ChildDatabase = TADatabase.child(tutorId);
+        //ChildDatabase.addChildEventListener(this);
+        tutorAppointChild = tutorAppointmentDB.child(tutorId);
+        tutorAppointChild.addChildEventListener(this);
     }
 
     private void getTutor() {
@@ -139,9 +149,12 @@ public class tutorProfile extends AppCompatActivity implements View.OnClickListe
             String TutorId = snapshot.child("tutorId").getValue().toString();
             String TutorialDate = snapshot.child("tutorialDate").getValue().toString();
             String TutorialDescription = snapshot.child("tutorialDescription").getValue().toString();
-            TutorialAssignment tutorialAssignment = new TutorialAssignment(Integer.valueOf(StudentId),Integer.valueOf(TutorId), TutorialDate,TutorialDescription);
-            ListAppointment.add(tutorialAssignment);
-            lvAdapter.notifyDataSetChanged();
+            TutorAppointment tutorAppointment = new TutorAppointment(Integer.valueOf(StudentId),Integer.valueOf(TutorId), TutorialDate,TutorialDescription);
+
+
+
+            ListAppointment.add(tutorAppointment);
+            newAdpterTutor.notifyDataSetChanged();
         }
         else {
             Toast.makeText(this,"Nothing",Toast.LENGTH_LONG).show();

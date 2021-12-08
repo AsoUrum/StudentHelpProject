@@ -25,7 +25,7 @@ public class StudentLoginPage extends AppCompatActivity implements View.OnClickL
 
 
 
-    Button btnStudentLogin;
+    Button btnStudentLogin,btnBack;
     ArrayList<User> listUsers;
     DatabaseReference userDB, userChild;
 
@@ -46,7 +46,9 @@ public class StudentLoginPage extends AppCompatActivity implements View.OnClickL
         edPassword = findViewById(R.id.edPassword);
 
         btnStudentLogin =findViewById(R.id.btnStudentLogin);
+        btnBack = findViewById(R.id.btnBack);
         btnStudentLogin.setOnClickListener(this);
+        btnBack.setOnClickListener(this);
 
         listUsers = new ArrayList<User>();
         userDB = FirebaseDatabase.getInstance().getReference("Users");
@@ -61,15 +63,29 @@ public class StudentLoginPage extends AppCompatActivity implements View.OnClickL
 
             case R.id.btnStudentLogin:
                 validate();
-
             break;
+            case R.id.btnBack:
+                BackToMain();
+                break;
     }
 }
 
+    private void BackToMain() {
+        Intent i = new Intent(this ,MainActivity.class);
+        startActivity(i);
+        this.finish();
+
+    }
+
     private void validate() {
-        String uname = edUserName.getText().toString();
-        userChild = userDB.child(uname);
-        userChild.addValueEventListener(this);
+        if(edUserName.getText().toString().length() > 0 && edPassword.getText().toString().length() > 0){
+            String uname = edUserName.getText().toString();
+            userChild = userDB.child(uname);
+            userChild.addValueEventListener(this);
+        }else{
+            Toast.makeText(this,"Please fill out all of the fields, try again.",Toast.LENGTH_LONG).show();
+        }
+
 
     }
 
